@@ -1,0 +1,11 @@
+{
+  "id": "human_qa_workflow",
+  "name": "Human QA Workflow",
+  "version": "1.0.0",
+  "description": "Human-in-the-loop QA workflow: enumerate targets, plan verification strategy, delegate execution, collect results, followup fixes",
+  "brief": "QA loop with human decisions",
+  "author": "ihf",
+  "tools_file": "tools.json",
+  "super_only": true,
+  "variables": []
+}

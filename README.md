@@ -16,6 +16,7 @@ Custom plugins, skills, and tools for [Evonic](https://evonic.dev).
 | Skill | Description |
 |-------|-------------|
 | **project_planner** | Structured 6-phase workflow: discovery, multi-aspect analysis, peer review via sub-agents, delegation mapping, kanban task creation, and monitoring. Designed for the super/lead agent. |
+| **human_qa_workflow** | Human-in-the-loop QA: enumerate targets, plan verification strategy, delegate execution to agents, collect pass/fail results, coordinate fixes. Loop until human is satisfied. |
 
 ### Tools
 
@@ -54,6 +55,9 @@ ln -s $EXT/plugins/tsc_checker $EVONIC/plugins/tsc_checker
 # Skill: project_planner
 ln -s $EXT/skills/project_planner $EVONIC/skills/project_planner
 
+# Skill: human_qa_workflow
+ln -s $EXT/skills/human_qa_workflow $EVONIC/skills/human_qa_workflow
+
 # Tool: setup_workspace
 ln -s $EXT/tools/setup_workspace.json $EVONIC/tools/setup_workspace.json
 ln -s $EXT/backend/tools/setup_workspace.py $EVONIC/backend/tools/setup_workspace.py
@@ -65,6 +69,7 @@ ln -s $EXT/backend/tools/setup_workspace.py $EVONIC/backend/tools/setup_workspac
    - **ruff_autoformat**: enabled globally (all agents) by default, or set `ENABLED_AGENTS` in plugin config
    - **tsc_checker**: enabled globally by default, or set `ENABLED_AGENTS` in plugin config. Set `TSC_ARGS` for extra tsc flags (default: `--noEmit`)
    - **project_planner**: assign the skill to your lead/super agent (also needs `kanban` and `subagent` skills)
+   - **human_qa_workflow**: assign to your lead/super agent (also needs `kanban` skill)
    - **setup_workspace**: assign the tool to any agent that needs git branch management
 
 ### Uninstall
@@ -75,6 +80,7 @@ Remove the symlinks — the evonic project is untouched:
 rm $EVONIC/plugins/ruff_autoformat
 rm $EVONIC/plugins/tsc_checker
 rm $EVONIC/skills/project_planner
+rm $EVONIC/skills/human_qa_workflow
 rm $EVONIC/tools/setup_workspace.json
 rm $EVONIC/backend/tools/setup_workspace.py
 ```
