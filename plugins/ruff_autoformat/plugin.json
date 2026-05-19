@@ -1,0 +1,18 @@
+{
+  "id": "ruff_autoformat",
+  "name": "Ruff Auto Format",
+  "version": "1.0.0",
+  "description": "Automatically run ruff lint and format on Python files after agent writes or edits them",
+  "author": "ihf",
+  "enabled": true,
+  "events": ["tool_executed"],
+  "variables": [
+    {
+      "name": "ENABLED_AGENTS",
+      "label": "Enabled Agent IDs",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated agent IDs to enable ruff for. Leave empty to enable for all agents."
+    }
+  ]
+}

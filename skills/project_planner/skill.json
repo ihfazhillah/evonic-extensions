@@ -1,0 +1,11 @@
+{
+  "id": "project_planner",
+  "name": "Project Planner",
+  "version": "1.0.0",
+  "description": "Structured workflow for discovery, planning, peer review, and delegation of tasks to multiple agents via kanban",
+  "brief": "Plan features and delegate to agents",
+  "author": "ihf",
+  "tools_file": "tools.json",
+  "super_only": true,
+  "variables": []
+}

@@ -1,0 +1,32 @@
+{
+  "id": "setup_workspace",
+  "name": "Setup Workspace",
+  "description": "Create git branches or worktrees for isolated parallel development.",
+  "function": {
+    "name": "setup_workspace",
+    "description": "Set up an isolated git workspace for development. Supports creating branches, worktrees, listing them, and cleaning up worktrees when done.\n\nUse 'branch' to create and switch to a new branch in the current repo.\nUse 'worktree' to create a separate working directory with its own branch (ideal for parallel agents).\nUse 'list' to see existing branches and worktrees.\nUse 'remove_worktree' to clean up a worktree after work is done.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["branch", "worktree", "list", "remove_worktree"],
+          "description": "Action to perform: 'branch' creates and checks out a new branch, 'worktree' creates a git worktree with a new branch in a sibling directory, 'list' shows branches and worktrees, 'remove_worktree' cleans up a worktree."
+        },
+        "name": {
+          "type": "string",
+          "description": "Branch name (for 'branch' and 'worktree' actions) or worktree path (for 'remove_worktree'). Example: 'feature/add-auth'"
+        },
+        "base": {
+          "type": "string",
+          "description": "Base branch or ref to branch from. Defaults to the current branch if omitted."
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  "mock_response": "var args = ARGS; var r = {}; if (args.action === 'branch') { r = {result: 'success', action: 'branch', branch: args.name || 'feature/example', message: 'Created and switched to branch ' + (args.name || 'feature/example')}; } else if (args.action === 'worktree') { r = {result: 'success', action: 'worktree', branch: args.name || 'feature/example', path: '../worktrees/' + (args.name || 'feature/example').replace(/\\//g, '-'), message: 'Worktree created'}; } else if (args.action === 'list') { r = {result: 'success', action: 'list', branches: ['main', 'feature/example'], worktrees: []}; } else if (args.action === 'remove_worktree') { r = {result: 'success', action: 'remove_worktree', message: 'Worktree removed'}; } else { r = {error: 'Unknown action: ' + args.action}; } console.log(JSON.stringify(r));",
+  "mock_response_type": "javascript",
+  "created_at": "2026-05-19T00:00:00.000000",
+  "updated_at": "2026-05-19T00:00:00.000000"
+}
