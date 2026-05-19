@@ -8,7 +8,8 @@ Custom plugins, skills, and tools for [Evonic](https://evonic.dev).
 
 | Plugin | Description |
 |--------|-------------|
-| **ruff_autoformat** | Automatically runs `ruff check --fix` and `ruff format` on Python files after an agent edits them. Discovers ruff via: system PATH, `uv run ruff`, or `.venv/bin/ruff`. |
+| **ruff_autoformat** | Automatically runs `ruff check --fix` and `ruff format` on Python files after an agent edits them. Injects unfixable lint errors into the agent's conversation. Discovers ruff via: system PATH, `uv run ruff`, or `.venv/bin/ruff`. |
+| **tsc_checker** | Automatically runs TypeScript type checking on `.ts`/`.tsx` files after an agent edits them. Injects type errors into the agent's conversation. Discovers tsc via: system PATH, `npx tsc`, or `node_modules/.bin/tsc`. |
 
 ### Skills
 
@@ -47,6 +48,9 @@ EXT=~/Projects/evonic-extensions
 # Plugin: ruff_autoformat
 ln -s $EXT/plugins/ruff_autoformat $EVONIC/plugins/ruff_autoformat
 
+# Plugin: tsc_checker
+ln -s $EXT/plugins/tsc_checker $EVONIC/plugins/tsc_checker
+
 # Skill: project_planner
 ln -s $EXT/skills/project_planner $EVONIC/skills/project_planner
 
@@ -59,6 +63,7 @@ ln -s $EXT/backend/tools/setup_workspace.py $EVONIC/backend/tools/setup_workspac
 
 4. Assign the extensions to your agents via the Web UI or CLI:
    - **ruff_autoformat**: enabled globally (all agents) by default, or set `ENABLED_AGENTS` in plugin config
+   - **tsc_checker**: enabled globally by default, or set `ENABLED_AGENTS` in plugin config. Set `TSC_ARGS` for extra tsc flags (default: `--noEmit`)
    - **project_planner**: assign the skill to your lead/super agent (also needs `kanban` and `subagent` skills)
    - **setup_workspace**: assign the tool to any agent that needs git branch management
 
@@ -68,6 +73,7 @@ Remove the symlinks — the evonic project is untouched:
 
 ```bash
 rm $EVONIC/plugins/ruff_autoformat
+rm $EVONIC/plugins/tsc_checker
 rm $EVONIC/skills/project_planner
 rm $EVONIC/tools/setup_workspace.json
 rm $EVONIC/backend/tools/setup_workspace.py
