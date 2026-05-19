@@ -1,0 +1,25 @@
+{
+  "id": "tsc_checker",
+  "name": "TSC Type Checker",
+  "version": "1.0.0",
+  "description": "Automatically run TypeScript type checking after agent edits .ts/.tsx files. Injects errors into conversation so the agent can fix them.",
+  "author": "ihf",
+  "enabled": true,
+  "events": ["tool_executed"],
+  "variables": [
+    {
+      "name": "ENABLED_AGENTS",
+      "label": "Enabled Agent IDs",
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated agent IDs to enable tsc for. Leave empty to enable for all agents."
+    },
+    {
+      "name": "TSC_ARGS",
+      "label": "Extra tsc arguments",
+      "type": "string",
+      "default": "--noEmit",
+      "description": "Extra arguments passed to tsc. Default: --noEmit (type check only, no output files)."
+    }
+  ]
+}
